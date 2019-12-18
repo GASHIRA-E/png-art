@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   context: __dirname,
   entry: {
-    path: './src/index.js'
+    path: './src/index.ts'
     // 後ほどエントリポイントを作成します
   },
   output: {
@@ -14,6 +14,9 @@ module.exports = {
   },
   watchOptions: {
     ignored: /node_modules/
+  },
+  resolve: {
+    extensions:['.ts','.js']
   },
   module: {
     rules: [
@@ -31,6 +34,9 @@ module.exports = {
             ]
           }
         }
+      }, {
+        // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
+        test:/\.ts$/,loader:'ts-loader'
       }
     ]
   }
